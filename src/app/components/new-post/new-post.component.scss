@@ -1,0 +1,57 @@
+form {
+    width: 100%;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 200px;
+
+    h2 {
+        color: #1CC1E3;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .postTitle {
+        width: 60%;
+        color: #1CC1E3;
+        font-size: 1.2rem;
+        text-align: center;
+        border: 5px solid #E25DCB;
+        border-radius: 5px;
+        margin: 40px 0 20px 0;
+        padding: 5px;
+    }
+    
+    .postContent {
+        width: 60%;
+        min-height: 150px;
+        color: #1CC1E3;
+        font-family: 'Roboto', sans-serif;
+        font-style: italic;
+        font-size: 1.2rem;
+        white-space: pre-wrap;
+        text-align: center;
+        border: 5px solid #E25DCB;
+        border-radius: 5px;
+        margin-bottom: 40px;
+        padding: 5px;
+    }
+
+    button {
+        border: none;
+        border-radius: 50%;
+        background-color: #1CC1E3;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 7px 15px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: transparent;
+            color: #1CC1E3;
+            border: 3px solid #1CC1E3;
+        }
+    }
+}

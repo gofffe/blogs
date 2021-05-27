@@ -1,0 +1,9 @@
+<div class="blog-container">
+    <div *ngFor="let b of blogs" class="blog">
+        <p *ngIf="paramsBlogId !== b.id">{{ b.title | lowercase }}</p>
+        <form #changeBlogForm="ngForm" *ngIf="paramsBlogId == b.id" (ngSubmit)="onChangeBlog(b, changeBlogForm)" autocomplete="off">
+            <input type="text" name="title" [(ngModel)]="b.title">
+            <button type="submit" class="changeBtn">&#10003;</button>
+        </form>
+    </div>
+</div>
