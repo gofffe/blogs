@@ -12,12 +12,12 @@ import { BlogService } from 'src/app/services/blog/blog.service';
 export class BlogsComponent implements OnInit {
   blogs: Blog[] = [];
 
-  constructor(private service: BlogService, private router: Router) { }
+  constructor(private blogService: BlogService, private router: Router) { }
 
   ngOnInit(): void {
-    this.service.allBlogs$.subscribe((data: Blog[]) => {
+    this.blogService.allBlogs$.subscribe((data: Blog[]) => {
       this.blogs = data;
     })
-    this.service.getBlogs();
+    this.blogService.getBlogs();
   }
 }

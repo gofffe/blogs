@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Blog } from 'src/app/models/Blog';
 import { Post } from 'src/app/models/Post';
 import { BlogService } from 'src/app/services/blog/blog.service';
+import { PostService } from 'src/app/services/post/post.service';
 
 @Component({
   selector: 'app-change-post',
@@ -20,7 +21,7 @@ export class ChangePostComponent implements OnInit {
   newPostTitle: string = '';
   newPostContent: string = '';
 
-  constructor(private service: BlogService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private blogService: BlogService, private postService: PostService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {    
     this.route.paramMap.subscribe((params) => {
@@ -28,7 +29,7 @@ export class ChangePostComponent implements OnInit {
       this.paramsPostId = +params.get('nr');
     })
 
-    this.service.showPosts(this.paramsBlogId).subscribe((data) => {
+    this.postService.showPosts(this.paramsBlogId).subscribe((data) => {
       this.blog = data;
       this.posts = data.posts;
     })   
@@ -50,8 +51,8 @@ export class ChangePostComponent implements OnInit {
         comments: post.comments
       }
 
-      this.service.changePost(updatedPost).subscribe(() => {
-        this.service.getBlogs();
+      this.postService.changePost(updatedPost).subscribe(() => {
+        this.blogService.getBlogs();
       });
     }
     this.router.navigate([`blog/${this.paramsBlogId}`]);

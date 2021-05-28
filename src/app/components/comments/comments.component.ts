@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Comment } from 'src/app/models/Comment';
 import { Post } from 'src/app/models/Post';
 import { BlogService } from 'src/app/services/blog/blog.service';
+import { CommentService } from 'src/app/services/comment/comment.service';
 
 @Component({
   selector: 'app-comments',
@@ -18,7 +19,7 @@ export class CommentsComponent implements OnInit {
   comments: Comment[] = [];
   comment: string = '';
 
-  constructor(private route: ActivatedRoute, private service: BlogService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private blogService: BlogService, private commentService: CommentService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -26,7 +27,7 @@ export class CommentsComponent implements OnInit {
       this.paramsPostId = +params.get('nr');
       })
 
-    this.service.showComments(this.paramsPostId).subscribe((data) => {
+    this.commentService.showComments(this.paramsPostId).subscribe((data) => {
       this.post = data;      
     })
   }
@@ -46,9 +47,9 @@ export class CommentsComponent implements OnInit {
         post: this.post 
       }      
 
-      this.service.createComment(newComment).subscribe((comment) => this.comments.push(comment));
+      this.commentService.createComment(newComment).subscribe((comment) => this.comments.push(comment));
 
-      this.service.getBlogs();
+      this.blogService.getBlogs();
     }
     this.router.navigate([`blog/${this.paramsBlogId}/post/${this.paramsPostId}/comments`]);
   }

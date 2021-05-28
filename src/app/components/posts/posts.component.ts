@@ -6,6 +6,7 @@ import { faPlus, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Blog } from 'src/app/models/Blog';
 import { Post } from 'src/app/models/Post';
 import { BlogService } from 'src/app/services/blog/blog.service';
+import { PostService } from 'src/app/services/post/post.service';
 
 @Component({
   selector: 'app-posts',
@@ -22,14 +23,14 @@ export class PostsComponent implements OnInit {
   faEdit = faEdit;
   faTimes = faTimes;
 
-  constructor(private route: ActivatedRoute, private service: BlogService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private postService: PostService, private blogService: BlogService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.paramsBlogId = +params.get('id');         
       })
 
-    this.service.showPosts(this.paramsBlogId).subscribe((data) => {
+    this.postService.showPosts(this.paramsBlogId).subscribe((data) => {
       this.blog = data;
       this.posts = data.posts.reverse();
     })     
@@ -44,8 +45,8 @@ export class PostsComponent implements OnInit {
   }
 
   removePost(postId: number) { 
-    this.service.removePost(postId).subscribe(() => {
-      this.service.getBlogs();
+    this.postService.removePost(postId).subscribe(() => {
+      this.blogService.getBlogs();
     })
     this.router.navigate([`/blog/${this.paramsBlogId}`]); //laddar inte om med rätt data
   }

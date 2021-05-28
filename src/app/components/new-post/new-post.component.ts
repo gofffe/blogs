@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Blog } from 'src/app/models/Blog';
 import { Post } from 'src/app/models/Post';
 import { BlogService } from 'src/app/services/blog/blog.service';
+import { PostService } from 'src/app/services/post/post.service';
 
 @Component({
   selector: 'app-new-post',
@@ -19,7 +20,7 @@ export class NewPostComponent implements OnInit {
 
   posts: Post[] = [];
 
-  constructor(private service: BlogService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private postService: PostService, private blogService: BlogService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -43,9 +44,9 @@ export class NewPostComponent implements OnInit {
         comments: []
       }
 
-      this.service.createPost(newPost).subscribe((post) => this.posts.push(post));
+      this.postService.createPost(newPost).subscribe((post) => this.posts.push(post));
 
-      this.service.getBlogs(); 
+      this.blogService.getBlogs(); 
     } 
     this.router.navigate([`blog/${this.paramsBlogId}`]); //laddar inte om med rätt data
   }

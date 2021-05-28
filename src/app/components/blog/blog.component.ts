@@ -17,7 +17,7 @@ export class BlogComponent implements OnInit {
   faEdit = faEdit;
   faTimes = faTimes;
 
-  constructor(private service: BlogService, private router: Router) { }
+  constructor(private blogService: BlogService, private router: Router) { }
 
   ngOnInit(): void {  }
 
@@ -26,8 +26,8 @@ export class BlogComponent implements OnInit {
   }
 
   removeBlog(blogId: number) {
-    this.service.removeBlog(blogId).subscribe(() => {
-      this.service.getBlogs();
+    this.blogService.removeBlog(blogId).subscribe(() => {
+      this.blogService.getBlogs();
     })
     this.router.navigate(['/']);
   }

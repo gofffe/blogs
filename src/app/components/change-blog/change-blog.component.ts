@@ -16,17 +16,17 @@ export class ChangeBlogComponent implements OnInit {
   
   newBlogTitle: string = '';
 
-  constructor(private service: BlogService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private blogService: BlogService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.paramsBlogId = +params.get('id');
     })
 
-    this.service.allBlogs$.subscribe((data: Blog[]) => {
+    this.blogService.allBlogs$.subscribe((data: Blog[]) => {
       this.blogs = data;
     })
-    this.service.getBlogs();
+    this.blogService.getBlogs();
   }
 
   onChangeBlog(blog: Blog, changeBlogForm): void {
@@ -41,8 +41,8 @@ export class ChangeBlogComponent implements OnInit {
         posts: blog.posts
       }
 
-      this.service.changeBlog(updatedBlog).subscribe(() => {
-        this.service.getBlogs();
+      this.blogService.changeBlog(updatedBlog).subscribe(() => {
+        this.blogService.getBlogs();
       });
     }
     this.router.navigate(['/']);

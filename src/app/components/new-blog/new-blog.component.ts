@@ -13,7 +13,7 @@ export class NewBlogComponent implements OnInit {
   blogs: Blog[] = [];
   blogTitle: string = '';
 
-  constructor(private service: BlogService, private router: Router) { }
+  constructor(private blogService: BlogService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -30,9 +30,9 @@ export class NewBlogComponent implements OnInit {
         posts: []
       }
 
-      this.service.createBlog(newBlog).subscribe((blog) => this.blogs.push(blog));
+      this.blogService.createBlog(newBlog).subscribe((blog) => this.blogs.push(blog));
 
-      this.service.getBlogs();
+      this.blogService.getBlogs();
     }
     this.router.navigate(['/']); //laddar inte om med rätt data
   }
