@@ -14,20 +14,20 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-    //HTTP requests for posts
-    showPosts(blogId: number): Observable<Blog> {
-      return this.http.get<Blog>(this.blogsUrl + blogId);
-    }
-  
-    createPost(post: Post): Observable<Post> {
-      return this.http.post<Post>(this.postsUrl, post);
-    }
-  
-    changePost(post: Post): Observable<Post> {
-      return this.http.put<Post>(this.postsUrl + post.id, post);
-    }
-  
-    removePost(postId: number): Observable<Post> {
-      return this.http.delete<Post>(this.postsUrl + postId);
-    }
+  //HTTP requests for posts
+  showPosts(blogId: number): Observable<Blog> {
+    return this.http.get<Blog>(this.blogsUrl + blogId);
+  }
+
+  createPost(post: Post): Observable<Post> {
+    return this.http.post<Post>(this.postsUrl, post);
+  }
+
+  changePost(post: Post): Observable<Post> {
+    return this.http.put<Post>(this.postsUrl + post.id, post);
+  }
+
+  removePost(postId: number): Observable<Post> {
+    return this.http.delete<Post>(this.postsUrl + postId);
+  }
 }

@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Blog } from 'src/app/models/Blog';
 import { Post } from 'src/app/models/Post';
-import { BlogService } from 'src/app/services/blog/blog.service';
 import { PostService } from 'src/app/services/post/post.service';
 
 @Component({
@@ -12,19 +11,18 @@ import { PostService } from 'src/app/services/post/post.service';
   styleUrls: ['./new-post.component.scss']
 })
 export class NewPostComponent implements OnInit {
-  paramsBlogId: number = 0;
   blog: Blog;
+
+  blogId: number = 0;
 
   postTitle: string = '';
   postContent: string = '';
 
-  posts: Post[] = [];
-
-  constructor(private postService: PostService, private blogService: BlogService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private postService: PostService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.paramsBlogId = +params.get('id');  
+      this.blogId = +params.get('id');  
     })
   }
 
@@ -39,16 +37,14 @@ export class NewPostComponent implements OnInit {
         content: this.postContent,
         created: new Date(),
         modified: new Date(),
-        blogId: this.paramsBlogId,
+        blogId: this.blogId,
         blog: this.blog,
         comments: []
       }
 
-      this.postService.createPost(newPost).subscribe((post) => this.posts.push(post));
-
-      this.blogService.getBlogs(); 
+      this.postService.createPost(newPost).subscribe(() => {
+        this.router.navigate([`blog/${this.blogId}`]);
+      });
     } 
-    this.router.navigate([`blog/${this.paramsBlogId}`]); //laddar inte om med rätt data
   }
-
 }

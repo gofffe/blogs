@@ -11,6 +11,7 @@ import { BlogService } from 'src/app/services/blog/blog.service';
 })
 export class NewBlogComponent implements OnInit {
   blogs: Blog[] = [];
+
   blogTitle: string = '';
 
   constructor(private blogService: BlogService, private router: Router) { }
@@ -30,11 +31,9 @@ export class NewBlogComponent implements OnInit {
         posts: []
       }
 
-      this.blogService.createBlog(newBlog).subscribe((blog) => this.blogs.push(blog));
-
-      this.blogService.getBlogs();
+      this.blogService.createBlog(newBlog).subscribe(() => {
+        this.router.navigate(['/']);
+      });
     }
-    this.router.navigate(['/']); //laddar inte om med rätt data
   }
-
 }

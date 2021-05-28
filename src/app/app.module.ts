@@ -9,13 +9,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
+import { BlogComponent } from './components/blog/blog.component';
 import { NewBlogComponent } from './components/new-blog/new-blog.component';
 import { ChangeBlogComponent } from './components/change-blog/change-blog.component';
 import { PostsComponent } from './components/posts/posts.component';
-import { BlogComponent } from './components/blog/blog.component';
 import { NewPostComponent } from './components/new-post/new-post.component';
-import { CommentsComponent } from './components/comments/comments.component';
 import { ChangePostComponent } from './components/change-post/change-post.component';
+import { CommentsComponent } from './components/comments/comments.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
@@ -28,8 +28,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     ChangeBlogComponent,
     PostsComponent,
     NewPostComponent,
-    CommentsComponent,
     ChangePostComponent,
+    CommentsComponent,
     NotFoundComponent,
   ],
   imports: [

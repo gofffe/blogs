@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Blog } from 'src/app/models/Blog';
 import { BlogService } from 'src/app/services/blog/blog.service';
@@ -12,7 +11,7 @@ import { BlogService } from 'src/app/services/blog/blog.service';
 export class BlogsComponent implements OnInit {
   blogs: Blog[] = [];
 
-  constructor(private blogService: BlogService, private router: Router) { }
+  constructor(private blogService: BlogService) { }
 
   ngOnInit(): void {
     this.blogService.allBlogs$.subscribe((data: Blog[]) => {

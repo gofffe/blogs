@@ -1,5 +1,5 @@
 <div class="blog-container">
-    <h2 *ngIf="blog">{{ blog.title }}</h2>
+    <h2 *ngIf="blog">{{ blog.title | lowercase}}</h2>
     <p class="new-post" (click)="newPost(blog.id)">nytt inlägg <span><fa-icon [icon]="faPlus"></fa-icon></span></p>
 </div>
 

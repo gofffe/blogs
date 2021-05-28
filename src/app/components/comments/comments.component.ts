@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
 import { Comment } from 'src/app/models/Comment';
 import { Post } from 'src/app/models/Post';
-import { BlogService } from 'src/app/services/blog/blog.service';
 import { CommentService } from 'src/app/services/comment/comment.service';
 
 @Component({
@@ -12,28 +14,30 @@ import { CommentService } from 'src/app/services/comment/comment.service';
   styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent implements OnInit {
-  paramsBlogId: number = 0;
-  paramsPostId: number = 0;
-
   post: Post;
-  comments: Comment[] = [];
+  
+  blogId: number = 0;
+  postId: number = 0;
+
   comment: string = '';
 
-  constructor(private route: ActivatedRoute, private blogService: BlogService, private commentService: CommentService, private router: Router) { }
+  faArrowLeft = faArrowLeft;
+
+  constructor(private route: ActivatedRoute, private commentService: CommentService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.paramsBlogId = +params.get('id');
-      this.paramsPostId = +params.get('nr');
+      this.blogId = +params.get('id');
+      this.postId = +params.get('nr');
       })
 
-    this.commentService.showComments(this.paramsPostId).subscribe((data) => {
+    this.commentService.showComments(this.postId).subscribe((data) => {
       this.post = data;      
     })
   }
 
   navigateBack() {
-    this.router.navigate([`blog/${this.paramsBlogId}`]);
+    this.router.navigate([`blog/${this.blogId}`]);
   }
 
   onCommentSubmit(commentForm): void {
@@ -43,15 +47,17 @@ export class CommentsComponent implements OnInit {
       let newComment: Comment = {
         id: 0,
         content: this.comment,
-        postId: this.paramsPostId,
+        postId: this.postId,
         post: this.post 
-      }      
+      }
 
-      this.commentService.createComment(newComment).subscribe((comment) => this.comments.push(comment));
+      this.commentService.createComment(newComment).subscribe(() => {
+        this.commentService.showComments(this.postId).subscribe((data) => {
+          this.post = data;      
+        })
+      });
 
-      this.blogService.getBlogs();
+      commentForm.resetForm();
     }
-    this.router.navigate([`blog/${this.paramsBlogId}/post/${this.paramsPostId}/comments`]);
   }
-
 }

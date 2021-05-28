@@ -29,7 +29,6 @@ export class BlogComponent implements OnInit {
     this.blogService.removeBlog(blogId).subscribe(() => {
       this.blogService.getBlogs();
     })
-    this.router.navigate(['/']);
   }
 
   navigateToPosts(blogId: number): void {

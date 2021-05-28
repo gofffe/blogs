@@ -12,7 +12,7 @@ import { BlogService } from 'src/app/services/blog/blog.service';
 export class ChangeBlogComponent implements OnInit {
   blogs: Blog[] = [];
 
-  paramsBlogId: number = 0;
+  blogId: number = 0;
   
   newBlogTitle: string = '';
 
@@ -20,7 +20,7 @@ export class ChangeBlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.paramsBlogId = +params.get('id');
+      this.blogId = +params.get('id');
     })
 
     this.blogService.allBlogs$.subscribe((data: Blog[]) => {
@@ -42,10 +42,8 @@ export class ChangeBlogComponent implements OnInit {
       }
 
       this.blogService.changeBlog(updatedBlog).subscribe(() => {
-        this.blogService.getBlogs();
+        this.router.navigate(['/']);
       });
     }
-    this.router.navigate(['/']);
   }
-
 }

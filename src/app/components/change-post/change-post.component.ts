@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Blog } from 'src/app/models/Blog';
 import { Post } from 'src/app/models/Post';
-import { BlogService } from 'src/app/services/blog/blog.service';
 import { PostService } from 'src/app/services/post/post.service';
 
 @Component({
@@ -15,21 +14,21 @@ export class ChangePostComponent implements OnInit {
   blog: Blog;
   posts: Post[];
 
-  paramsBlogId: number = 0;
-  paramsPostId: number = 0;
+  blogId: number = 0;
+  postId: number = 0;
 
   newPostTitle: string = '';
   newPostContent: string = '';
 
-  constructor(private blogService: BlogService, private postService: PostService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private postService: PostService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {    
     this.route.paramMap.subscribe((params) => {
-      this.paramsBlogId = +params.get('id');
-      this.paramsPostId = +params.get('nr');
+      this.blogId = +params.get('id');
+      this.postId = +params.get('nr');
     })
 
-    this.postService.showPosts(this.paramsBlogId).subscribe((data) => {
+    this.postService.showPosts(this.blogId).subscribe((data) => {
       this.blog = data;
       this.posts = data.posts;
     })   
@@ -52,10 +51,8 @@ export class ChangePostComponent implements OnInit {
       }
 
       this.postService.changePost(updatedPost).subscribe(() => {
-        this.blogService.getBlogs();
+        this.router.navigate([`blog/${this.blogId}`]);
       });
     }
-    this.router.navigate([`blog/${this.paramsBlogId}`]);
   }
-
 }
