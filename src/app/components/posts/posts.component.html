@@ -6,15 +6,15 @@
 <div class="posts-container" *ngFor="let p of posts">
     <div class="posts-header">
         <h3>{{ p.title }}</h3>
-        <p>{{ p.created | date: 'dd/M/y' }}</p>
+        <p>{{ p.created | date: 'd/M/yy HH:mm' }}</p>
     </div>
 
     <div class="posts-content">
         <p>{{ p.content }}</p>
     </div>
 
-    <div *ngIf="p.modified" class="posts-modified"> <!-- funkar inte -->
-        <p>Ändrad: {{ p.modified | date: 'dd/M/yy' }}</p>
+    <div *ngIf="p.created != p.modified" class="posts-modified">
+        <p>Senast ändrad: {{ p.modified | date: 'd/M/yy HH:mm' }}</p>
     </div>
 
     <div class="posts-choices">

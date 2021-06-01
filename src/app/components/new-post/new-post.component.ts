@@ -30,21 +30,30 @@ export class NewPostComponent implements OnInit {
     this.postTitle = postsForm.value.title;
     this.postContent = postsForm.value.content;
 
-    if (this.postTitle !== '') {
-      let newPost: Post = {
-        id: 0,
-        title: this.postTitle,
-        content: this.postContent,
-        created: new Date(),
-        modified: new Date(),
-        blogId: this.blogId,
-        blog: this.blog,
-        comments: []
-      }
+    let input = document.querySelector('input');
+    let textarea = document.querySelector('textarea');
 
-      this.postService.createPost(newPost).subscribe(() => {
-        this.router.navigate([`blog/${this.blogId}`]);
-      });
-    } 
+    if (this.postTitle !== '') {
+      if (this.postContent !== '') {
+        let newPost: Post = {
+          id: 0,
+          title: this.postTitle,
+          content: this.postContent,
+          created: new Date(),
+          modified: new Date(),
+          blogId: this.blogId,
+          blog: this.blog,
+          comments: []
+        }
+
+        this.postService.createPost(newPost).subscribe(() => {
+          this.router.navigate([`blog/${this.blogId}`]);
+        });
+      } else {
+        textarea.classList.add('warning');
+      }
+    } else {
+      input.classList.add('warning');
+    }
   }
 }

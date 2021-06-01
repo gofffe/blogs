@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { BlogsComponent } from './blogs.component';
+import { BlogService } from 'src/app/services/blog/blog.service';
+import { MockBlogService } from 'src/app/services/blog/MockBlogService';
 
 describe('BlogsComponent', () => {
   let component: BlogsComponent;
@@ -8,7 +12,9 @@ describe('BlogsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BlogsComponent ]
+      declarations: [ BlogsComponent ],
+      imports: [ HttpClientModule ],
+      providers: [{ provide: BlogService, useClass: MockBlogService }]
     })
     .compileComponents();
   });
@@ -21,5 +27,10 @@ describe('BlogsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have array of blogs', () => {
+    expect(component.blogs.length).toBe(3);
+    expect(component.blogs[2].title).toBe('dagar');
   });
 });

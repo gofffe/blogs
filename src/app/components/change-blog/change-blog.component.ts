@@ -31,6 +31,7 @@ export class ChangeBlogComponent implements OnInit {
 
   onChangeBlog(blog: Blog, changeBlogForm): void {
     this.newBlogTitle = changeBlogForm.value.title;
+    let input = document.querySelector('input');
 
     if (this.newBlogTitle !== '') {
       let updatedBlog: Blog = {
@@ -44,6 +45,8 @@ export class ChangeBlogComponent implements OnInit {
       this.blogService.changeBlog(updatedBlog).subscribe(() => {
         this.router.navigate(['/']);
       });
+    } else {
+      input.classList.add('warning');
     }
   }
 }

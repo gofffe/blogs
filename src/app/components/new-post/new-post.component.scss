@@ -30,12 +30,15 @@ form {
         font-family: 'Roboto', sans-serif;
         font-style: italic;
         font-size: 1.2rem;
-        white-space: pre-wrap;
         text-align: center;
         border: 5px solid #E25DCB;
         border-radius: 5px;
         margin-bottom: 40px;
         padding: 5px;
+    }
+
+    .warning {
+        background-color: #e25dcc63;
     }
 
     button {

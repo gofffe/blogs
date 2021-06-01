@@ -43,6 +43,8 @@ export class CommentsComponent implements OnInit {
   onCommentSubmit(commentForm): void {
     this.comment = commentForm.value.comment;
 
+    let textarea = document.querySelector('textarea');
+
     if (this.comment !== '') {
       let newComment: Comment = {
         id: 0,
@@ -58,6 +60,8 @@ export class CommentsComponent implements OnInit {
       });
 
       commentForm.resetForm();
+    } else {
+      textarea.classList.add('warning');
     }
   }
 }

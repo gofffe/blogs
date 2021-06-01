@@ -22,4 +22,11 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have <a>-tag with "skapa ny"', () => {
+    let headerElement: HTMLElement = fixture.nativeElement;
+    let create = headerElement.querySelector('.create-new-blog');
+
+    expect(create.textContent).toEqual('skapa ny');
+  })
 });

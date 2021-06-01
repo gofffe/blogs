@@ -38,21 +38,30 @@ export class ChangePostComponent implements OnInit {
     this.newPostTitle = changePostForm.value.title;
     this.newPostContent = changePostForm.value.content;
 
-    if (this.newPostTitle !== '' && this.newPostContent !== '') {
-      let updatedPost: Post = {
-        id: post.id,
-        title: this.newPostTitle,
-        content: this.newPostContent,
-        created: post.created,
-        modified: new Date(),
-        blogId: post.blogId,
-        blog: post.blog,
-        comments: post.comments
-      }
+    let input = document.querySelector('input');
+    let textarea = document.querySelector('textarea');
 
-      this.postService.changePost(updatedPost).subscribe(() => {
-        this.router.navigate([`blog/${this.blogId}`]);
-      });
+    if (this.newPostTitle !== '') {
+      if (this.newPostContent !== '') {
+        let updatedPost: Post = {
+          id: post.id,
+          title: this.newPostTitle,
+          content: this.newPostContent,
+          created: post.created,
+          modified: new Date(),
+          blogId: post.blogId,
+          blog: post.blog,
+          comments: post.comments
+        }
+
+        this.postService.changePost(updatedPost).subscribe(() => {
+          this.router.navigate([`blog/${this.blogId}`]);
+        });
+      } else {
+        textarea.classList.add('warning');
+      }
+    } else {
+      input.classList.add('warning');
     }
   }
 }

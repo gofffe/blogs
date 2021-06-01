@@ -22,6 +22,8 @@ export class NewBlogComponent implements OnInit {
   onSubmit(blogForm): void {
     this.blogTitle = blogForm.value.title;
 
+    let input = document.querySelector('input');
+
     if (this.blogTitle !== '') {
       let newBlog: Blog = {
         id: 0,
@@ -29,11 +31,13 @@ export class NewBlogComponent implements OnInit {
         created: new Date(),
         userId: 900410,
         posts: []
-      }
+      }      
 
       this.blogService.createBlog(newBlog).subscribe(() => {
         this.router.navigate(['/']);
       });
+    } else {
+      input.classList.add('warning');
     }
   }
 }
