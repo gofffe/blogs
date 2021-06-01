@@ -1,0 +1,53 @@
+:host {
+    width: 35%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 3%;
+    padding: 5px;
+    text-align: center;
+    word-break: break-word;
+    border: 5px solid #E25DCB;
+    border-radius: 5px;
+
+    p {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #1CC1E3;
+        cursor: pointer;
+        &:hover {
+            border-top: 3px solid transparent;
+            border-bottom: 3px solid black;
+        }
+    }
+
+    .change {
+        position: absolute;
+        top: 0;
+        right: 15%;
+        padding: 5px;
+        cursor: pointer;
+        color: #e25dcc3b;
+        font-size: 1rem;
+        font-weight: bold;
+        &:hover {
+            color: black;
+        }
+    }
+
+    .remove {
+        position: absolute;
+        top: 0;
+        right: 3%;
+        padding: 5px;
+        cursor: pointer;
+        color: #e25dcc3b;
+        font-size: 1.2rem;
+        font-weight: bold;
+        &:hover {
+            color: black;
+        }
+    }
+}

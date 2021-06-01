@@ -1,0 +1,25 @@
+<div class="blog-container">
+    <h2 *ngIf="blog">{{ blog.title | lowercase}}</h2>
+    <p class="new-post" (click)="newPost(blog.id)">nytt inlägg <span><fa-icon [icon]="faPlus"></fa-icon></span></p>
+</div>
+
+<div class="posts-container" *ngFor="let p of posts">
+    <div class="posts-header">
+        <h3>{{ p.title }}</h3>
+        <p>{{ p.created | date: 'd/M/yy HH:mm' }}</p>
+    </div>
+
+    <div class="posts-content">
+        <p>{{ p.content }}</p>
+    </div>
+
+    <div *ngIf="p.created != p.modified" class="posts-modified">
+        <p>Senast ändrad: {{ p.modified | date: 'd/M/yy HH:mm' }}</p>
+    </div>
+
+    <div class="posts-choices">
+        <div class="changePost" (click)="changePost(p.id)"><fa-icon [icon]="faEdit"></fa-icon></div>
+        <div class="removePost" (click)="removePost(p.id)"><fa-icon [icon]="faTimes"></fa-icon></div>
+        <div class="comments" (click)="navigateToComments(p.id)"><span>{{ p.comments.length }} </span>kommentarer</div>
+    </div>
+</div>

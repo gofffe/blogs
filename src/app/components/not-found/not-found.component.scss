@@ -1,0 +1,35 @@
+div {
+    width: 100%;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 120px;
+
+    h4 {
+        color: #E25DCB;
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #E25DCB;
+        font-weight: bold;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+        background-color: #1CC1E3;
+        border-radius: 50px;
+        margin: 50px;
+        padding: 10px 15px;
+        border: 3px solid transparent;
+        &:hover {
+            background-color: transparent;
+            color: #1CC1E3;
+            border: 3px solid #1CC1E3;
+        }
+    }
+}

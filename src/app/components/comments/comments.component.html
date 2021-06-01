@@ -1,0 +1,15 @@
+<div class="comments-container" *ngIf="post">
+    <h2>kommentarer</h2>
+    <p (click)="navigateBack()"><span><fa-icon [icon]="faArrowLeft"></fa-icon></span> gå tillbaka</p>
+
+    <h3>{{ post.title }}</h3>
+
+    <form #commentForm="ngForm" (ngSubmit)="onCommentSubmit(commentForm)" autocomplete="off">
+        <textarea class="comment" name="comment" placeholder="kommentera här..." [(ngModel)]="comment"></textarea>
+        <button type="submit">&#10003;</button>
+    </form>
+
+    <div class="comments" *ngFor="let c of post.comments.reverse()">
+        <h4>{{ c.content }}</h4>
+    </div>
+</div>

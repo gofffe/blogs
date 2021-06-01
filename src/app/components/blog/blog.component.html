@@ -1,0 +1,3 @@
+<p (click)="navigateToPosts(blog.id)">{{ blog.title | lowercase }}</p>
+<div class="change" (click)="changeBlog(blog.id)"><fa-icon [icon]="faEdit"></fa-icon></div>
+<div class="remove" (click)="removeBlog(blog.id)"><fa-icon [icon]="faTimes"></fa-icon></div>

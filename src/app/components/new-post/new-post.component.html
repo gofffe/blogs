@@ -1,0 +1,7 @@
+<form id="postsForm" #postsForm="ngForm" (ngSubmit)="onSubmit(postsForm)" autocomplete="off">
+    <h2>skapa nytt inlägg</h2>
+    <input type="text" class="postTitle" name="title" placeholder="titel" [(ngModel)]="postTitle">
+    <textarea class="postContent" name="content" form="postsForm" placeholder="skriv här..." [(ngModel)]="postContent"></textarea>
+
+    <button type="submit">&#10003;</button>
+</form>
