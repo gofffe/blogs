@@ -11,11 +11,15 @@
     word-break: break-word;
     border: 5px solid #E25DCB;
     border-radius: 5px;
+    @media screen and (min-width: 1024px) {
+        width: 15%;
+    }
 
     p {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         font-weight: bold;
         color: #1CC1E3;
+        padding-top: 5px;
         cursor: pointer;
         &:hover {
             border-top: 3px solid transparent;

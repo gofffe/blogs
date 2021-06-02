@@ -3,7 +3,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 120px;
+    padding-top: 120px;
+    @media screen and (min-width: 1024px) {
+        padding-top: 110px;
+    }
 
     h2 {
         color: #1CC1E3;
@@ -20,6 +23,13 @@
         cursor: pointer;
         &:hover {
             color: black;
+        }
+        @media screen and (min-width: 1024px) {
+            font-size: 0.7rem;
+            margin: 10px 0 30px 0;
+        }
+        @media screen and (min-width: 1400px) {
+            margin: 10px 0 50px 0;
         }
 
         span {
@@ -38,8 +48,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        border-bottom: 1px solid #c9c9c9;
         padding: 10px 0 40px 0;
+        @media screen and (min-width: 1024px) {
+            padding: 5px 0 20px 0;
+        }
         
         textarea {
             width: 60%;
@@ -53,6 +65,9 @@
             border-radius: 5px;
             margin: 10px 0 20px 0;
             padding: 5px;
+            @media screen and (min-width: 1400px) {
+                width: 40%;
+            }
         }
 
         .warning {
@@ -77,10 +92,38 @@
         }
     }
 
+    .comments-header {
+        width: 100%;
+        border-bottom: 3px solid rgb(236, 236, 236);
+        @media screen and (min-width: 1024px) {
+            width: 80%;
+        }
+        @media screen and (min-width: 1400px) {
+            width: 50%;
+        }
+
+        h5 {
+            color: #1CC1E3;
+            font-size: 1.2rem;
+            margin: 0 0 5px 20px;
+        }
+    }
+
     .comments {
         width: 100%;
-        background-color: rgb(236, 236, 236);
-        border-bottom: 1px solid #c9c9c9;
+        background-color: #e25dcc18;
+        border-bottom: 3px solid rgb(236, 236, 236);
+        &:last-child {
+            margin-bottom: 20px;
+        }
+        @media screen and (min-width: 1024px) {
+            width: 80%;
+            background-color: #e25dcc18;
+            border-bottom: 5px solid rgb(236, 236, 236);
+        }
+        @media screen and (min-width: 1400px) {
+            width: 50%;
+        }
 
         h4 {
             color: #E25DCB;
