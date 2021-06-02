@@ -5,11 +5,15 @@ form {
     flex-direction: column;
     align-items: center;
     padding-top: 200px;
+    @media screen and (min-width: 1400px) {
+        padding-top: 250px;
+    }
 
     h2 {
         color: #1CC1E3;
-        font-size: 1.5rem;
+        font-size: 2.2rem;
         font-weight: bold;
+        border-bottom: 3px solid #1CC1E3;
     }
 
     input {
@@ -21,6 +25,12 @@ form {
         border-radius: 5px;
         margin: 40px 0;
         padding: 5px;
+        @media screen and (min-width: 1024px) {
+            width: 40%;
+        }
+        @media screen and (min-width: 1400px) {
+            width: 30%;
+        }
     }
 
     .warning {
