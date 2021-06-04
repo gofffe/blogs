@@ -14,7 +14,6 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  //HTTP requests for posts
   showPosts(blogId: number): Observable<Blog> {
     return this.http.get<Blog>(this.blogsUrl + blogId);
   }

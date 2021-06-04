@@ -14,7 +14,6 @@ export class CommentService {
 
   constructor(private http: HttpClient) { }
 
-  //HTTP requests for comments
   showComments(postId: number): Observable<Post> {
     return this.http.get<Post>(this.postsUrl + postId);
   }

@@ -1,12 +1,10 @@
 <div *ngIf="posts" class="posts-wrapper">
     <div *ngFor="let p of posts" class="posts-container">
-
         <form *ngIf="p.id == postId" #changePostForm="ngForm" id="changePost" (ngSubmit)="onChangePost(p, changePostForm)" autocomplete="off">
             <h2>ändra inlägg</h2>
             <input type="text" name="title" [(ngModel)]="p.title">
             <textarea name="content" form="changePost" [(ngModel)]="p.content"></textarea>
             <button type="submit">&#10003;</button>
         </form>
-
     </div>
 </div>
