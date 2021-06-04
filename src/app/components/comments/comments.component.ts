@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { Comment } from 'src/app/models/Comment';

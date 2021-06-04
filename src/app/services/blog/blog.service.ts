@@ -16,7 +16,6 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
-  //HTTP requests for blogs
   getBlogs(): void {
     this.http.get<Blog[]>(this.myBlogsUrl).subscribe((blogs: Blog[]) => {
       this.allBlogs.next(blogs);      

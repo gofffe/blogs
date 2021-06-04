@@ -12,7 +12,6 @@ import { PostService } from 'src/app/services/post/post.service';
 })
 export class NewPostComponent implements OnInit {
   blog: Blog;
-
   blogId: number = 0;
 
   postTitle: string = '';

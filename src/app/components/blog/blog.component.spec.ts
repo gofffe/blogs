@@ -35,7 +35,7 @@ describe('BlogComponent', () => {
   });
 
   it('should display blog title', () => {
-    let p: HTMLHeadingElement = fixture.nativeElement.querySelector('p');
+    let p: HTMLElement = fixture.nativeElement.querySelector('p');
     let expectedTitle = component.blogToSend.title;
 
     expect(p.innerText).toBe(expectedTitle.toLowerCase());

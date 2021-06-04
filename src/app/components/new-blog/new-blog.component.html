@@ -1,6 +1,5 @@
 <form #blogForm="ngForm" (ngSubmit)="onSubmit(blogForm)" autocomplete="off">
     <h2>skapa ny blogg</h2>
     <input type="text" class="blogTitle" name="title" placeholder="bloggtitel..." [(ngModel)]="blogTitle">
-
     <button type="submit">&#10003;</button>
 </form>
